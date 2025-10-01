@@ -1,0 +1,25 @@
+# Build
+target/
+dist/
+node_modules/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Solana
+test-ledger/
+.anchor/
+
+# Environment
+.env
+.env.local
+*.pem
+*.json.bak
