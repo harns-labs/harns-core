@@ -1,0 +1,12 @@
+export const HARNS_PROGRAM_ID = "HRNs8jz4nnFSCmj3G7pWLrTBLhzGkXXbVnPJg2Cv9t7";
+
+export const INSURANCE_POOL_SEED = "insurance_pool";
+export const POLICY_SEED = "policy";
+export const REFUND_SEED = "refund";
+
+export const MIN_PREMIUM_LAMPORTS = 5_000;
+export const POLICY_TTL_SECONDS = 300;
+export const MAX_RATE_BPS = 10_000;
+export const DEFAULT_RATE_BPS = 250;
+
+export const LAMPORTS_PER_SOL = 1_000_000_000;
