@@ -3,6 +3,7 @@ set -euo pipefail
 
 echo "========================================="
 echo " Harns Protocol -- Test Suite"
+echo " Started at: $(date)"
 echo "========================================="
 
 echo "[1/3] Building Anchor program..."
