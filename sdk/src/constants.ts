@@ -1,3 +1,6 @@
+/**
+ * Core constants for the Harns insurance protocol SDK.
+ */
 export const HARNS_PROGRAM_ID = "HRNs8jz4nnFSCmj3G7pWLrTBLhzGkXXbVnPJg2Cv9t7";
 
 export const INSURANCE_POOL_SEED = "insurance_pool";
