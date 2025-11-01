@@ -25,4 +25,7 @@ pub enum HarnsError {{
 
     #[msg("Transaction signature does not match policy")]
     SignatureMismatch,
+
+    #[msg("Pool is currently paused")]
+    PoolPaused,
 }}
