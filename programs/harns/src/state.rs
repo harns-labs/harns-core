@@ -26,7 +26,7 @@ pub struct InsurancePool {{
 }}
 
 impl InsurancePool {{
-    /// 8 (discriminator) + 32 + 8 + 8 + 8 + 4 + 2 + 8 + 8 + 1 + 64 = 151
+    /// 8 (discriminator) + 32 + 8 + 8 + 8 + 4 + 2 + 8 + 8 + 1 + 1 + 63 = 151
     pub const SPACE: usize = 8 + 32 + 8 + 8 + 8 + 4 + 2 + 8 + 8 + 1 + 64;
 }}
 
