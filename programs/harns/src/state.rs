@@ -41,7 +41,7 @@ pub struct Policy {{
     pub premium_amount: u64,
     /// Transaction signature being insured
     pub tx_signature: [u8; 64],
-    /// Policy status: 0=active, 1=claimed, 2=expired
+    /// Policy status: 0=Active, 1=Claimed, 2=Expired
     pub status: u8,
     /// Timestamp of policy creation
     pub created_at: i64,
