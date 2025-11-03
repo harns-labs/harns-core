@@ -91,6 +91,6 @@ pub fn handler(
         timestamp: clock.unix_timestamp,
     }});
 
-    msg!("Refund processed: {{}} lamports to {{}}", refund_amount, ctx.accounts.claimant.key());
+    msg!("Refund processed: {{}} lamports to {{}} (policy: {{}})", refund_amount, ctx.accounts.claimant.key(), policy.key());
     Ok(())
 }}
