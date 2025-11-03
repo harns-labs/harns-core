@@ -122,6 +122,15 @@ export class HarnsClient {
   }
 
   /**
+   * Fetch pool or throw if not found.
+   */
+  async getPoolOrThrow(poolAddress: PublicKey) {
+    const pool = await this.getPool(poolAddress);
+    if (!pool) throw new Error("Pool not found: " + poolAddress.toBase58());
+    return pool;
+  }
+
+  /**
    * Get the program ID.
    */
   getProgramId(): PublicKey {
