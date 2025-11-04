@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   SOLANA_VERSION: "1.17.0"
   ANCHOR_VERSION: "0.29.0"
