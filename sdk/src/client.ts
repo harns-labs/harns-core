@@ -107,6 +107,15 @@ export class HarnsClient {
   }
 
   /**
+   * Fetch policy or throw if not found.
+   */
+  async getPolicyOrThrow(policyAddress: PublicKey) {
+    const policy = await this.getPolicy(policyAddress);
+    if (!policy) throw new Error("Policy not found: " + policyAddress.toBase58());
+    return policy;
+  }
+
+  /**
    * Calculate the premium for a given transaction fee.
    */
   calculatePremium(txFeeLamports: number, rateBps: number): number {
