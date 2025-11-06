@@ -13,3 +13,5 @@ export const MAX_RATE_BPS = 10_000;
 export const DEFAULT_RATE_BPS = 250;
 
 export const LAMPORTS_PER_SOL = 1_000_000_000;
+
+export const MAX_PREMIUM_LAMPORTS = 10_000_000_000;
