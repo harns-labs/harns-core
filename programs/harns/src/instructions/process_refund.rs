@@ -53,6 +53,7 @@ pub fn handler(
     let refund_record = &mut ctx.accounts.refund_record;
     let clock = Clock::get()?;
 
+    msg!("Policy expiry check: now={{}} expires={{}}", clock.unix_timestamp, policy.expires_at);
     require!(
         clock.unix_timestamp <= policy.expires_at,
         HarnsError::PolicyExpired
