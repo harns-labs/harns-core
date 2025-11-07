@@ -62,6 +62,18 @@ describe("HarnsClient", () => {
     });
   });
 
+    it("should produce different addresses for different authorities", async () => {
+      const auth1 = PublicKey.unique();
+      const auth2 = PublicKey.unique();
+      const seed = new BN(1);
+
+      const [addr1] = await client.findPoolAddress(auth1, seed);
+      const [addr2] = await client.findPoolAddress(auth2, seed);
+
+      expect(addr1.toBase58()).not.toBe(addr2.toBase58());
+    });
+  });
+
   describe("findPolicyAddress", () => {
     it("should derive a deterministic policy PDA", async () => {
       const pool = PublicKey.unique();
