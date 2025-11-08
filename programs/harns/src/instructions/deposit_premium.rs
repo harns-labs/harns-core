@@ -51,7 +51,7 @@ pub fn handler(
     );
     system_program::transfer(cpi_ctx, amount)?;
 
-    // Update pool state
+    // Update pool state -- checked arithmetic prevents overflow
     pool.total_premiums = pool.total_premiums.checked_add(amount)
         .ok_or(HarnsError::Overflow)?;
     pool.active_policies = pool.active_policies.checked_add(1)
