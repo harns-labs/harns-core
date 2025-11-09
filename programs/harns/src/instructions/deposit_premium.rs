@@ -64,7 +64,8 @@ pub fn handler(
     policy.tx_signature = tx_signature;
     policy.status = 0; // active
     policy.created_at = clock.unix_timestamp;
-    policy.expires_at = clock.unix_timestamp + 300; // 5 min TTL
+    // Policies expire after 5 minutes (300 seconds)
+    policy.expires_at = clock.unix_timestamp + 300;
     policy.bump = ctx.bumps.policy;
 
     emit!(PremiumDeposited {{
