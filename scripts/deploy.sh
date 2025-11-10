@@ -23,6 +23,9 @@ fi
 solana config set --url "$CLUSTER" --keypair "$DEPLOY_KEYPAIR"
 echo "Solana config set to $CLUSTER"
 
+echo "Checking deployer balance..."
+solana balance
+
 echo "Building program..."
 anchor build
 
