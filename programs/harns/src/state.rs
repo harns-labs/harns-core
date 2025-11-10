@@ -19,10 +19,12 @@ pub struct InsurancePool {{
     pub created_at: i64,
     /// Last rate update timestamp
     pub last_updated: i64,
+    /// Whether the pool is paused
+    pub is_paused: bool,
     /// Bump seed for PDA
     pub bump: u8,
     /// Reserved for future use
-    pub _padding: [u8; 64],
+    pub _padding: [u8; 63],
 }}
 
 impl InsurancePool {{
