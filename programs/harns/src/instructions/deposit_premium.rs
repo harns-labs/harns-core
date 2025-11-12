@@ -34,6 +34,7 @@ pub fn handler(
     amount: u64,
     tx_signature: [u8; 64],
 ) -> Result<()> {{
+    // Minimum premium: 5000 lamports (~0.000005 SOL)
     let min_premium: u64 = 5_000;
     require!(amount >= min_premium, HarnsError::PremiumTooLow);
 
