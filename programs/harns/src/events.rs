@@ -33,3 +33,11 @@ pub struct RatesUpdated {{
     pub new_rate_bps: u16,
     pub timestamp: i64,
 }}
+
+#[event]
+pub struct PoolClosed {
+    pub pool: Pubkey,
+    pub authority: Pubkey,
+    pub remaining_balance: u64,
+    pub timestamp: i64,
+}
