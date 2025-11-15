@@ -48,6 +48,6 @@ pub fn handler(
         timestamp: clock.unix_timestamp,
     }});
 
-    msg!("Insurance pool initialized: {{}}", pool.key());
+    msg!("Insurance pool initialized: {{}}, rate: {{}} bps", pool.key(), base_rate_bps);
     Ok(())
 }}
