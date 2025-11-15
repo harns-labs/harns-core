@@ -121,6 +121,13 @@ describe("HarnsClient", () => {
       expect(premium).toBe(251);
     });
 
+    it("should handle max rate (100%)", () => {
+      const fee = 100_000;
+      const rate = 10_000;
+      const premium = client.calculatePremium(fee, rate);
+      expect(premium).toBe(100_000);
+    });
+
     it("should handle zero rate gracefully", () => {
       const fee = 100_000;
       const rate = 0;
