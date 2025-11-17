@@ -1,3 +1,4 @@
+// Harns Protocol v0.4.2
 use anchor_lang::prelude::*;
 
 mod state;
