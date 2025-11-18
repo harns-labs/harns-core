@@ -38,6 +38,7 @@ describe("HarnsClient", () => {
     it("should expose the connection instance", () => {
       const conn = client.getConnection();
       expect(conn).toBeDefined();
+      expect(conn.rpcEndpoint).toContain("solana.com");
     });
   });
 
