@@ -56,3 +56,7 @@ export enum PolicyStatus {
   Claimed = 1,
   Expired = 2,
 }
+
+export function isPolicyActive(status: number): boolean {
+  return status === PolicyStatus.Active;
+}
