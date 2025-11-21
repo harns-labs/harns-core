@@ -62,6 +62,9 @@ jobs:
       - name: Install SDK dependencies
         run: cd sdk && npm ci
 
+      - name: Build SDK
+        run: cd sdk && npm run build --if-present
+
       - name: Run SDK tests
         run: cd sdk && npm test
 
