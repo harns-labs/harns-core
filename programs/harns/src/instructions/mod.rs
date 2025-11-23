@@ -1,3 +1,5 @@
+//! Instruction handlers for the Harns insurance protocol.
+
 pub mod initialize;
 pub mod deposit_premium;
 pub mod process_refund;
