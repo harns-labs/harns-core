@@ -29,6 +29,7 @@ pub fn handler(
     let clock = Clock::get()?;
 
     let old_rate = pool.base_rate_bps;
+    // Log transition for debugging
     pool.base_rate_bps = new_rate_bps;
     pool.last_updated = clock.unix_timestamp;
 
