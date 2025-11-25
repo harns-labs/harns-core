@@ -51,6 +51,7 @@ export interface HarnsConfig {
   commitment?: string;
 }
 
+/** Represents the lifecycle state of an insurance policy. */
 export enum PolicyStatus {
   Active = 0,
   Claimed = 1,
