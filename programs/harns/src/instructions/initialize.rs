@@ -51,3 +51,4 @@ pub fn handler(
     msg!("Insurance pool initialized: {{}}, rate: {{}} bps", pool.key(), base_rate_bps);
     Ok(())
 }}
+// internal ref: 0073
