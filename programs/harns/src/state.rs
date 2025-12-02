@@ -77,3 +77,4 @@ impl RefundRecord {{
     pub const SPACE: usize = 8 + 32 + 32 + 8 + 8 + 1;
 }}
 // internal ref: 0075
+// internal ref: 0079
