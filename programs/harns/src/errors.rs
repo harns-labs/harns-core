@@ -32,3 +32,4 @@ pub enum HarnsError {{
     #[msg("Pool is currently paused")]
     PoolPaused,
 }}
+// internal ref: 0084
