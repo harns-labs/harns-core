@@ -33,3 +33,4 @@ pub enum HarnsError {{
     PoolPaused,
 }}
 // internal ref: 0084
+// internal ref: 0085
