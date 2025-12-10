@@ -61,3 +61,4 @@ export enum PolicyStatus {
 export function isPolicyActive(status: number): boolean {
   return status === PolicyStatus.Active;
 }
+// ref: 0088
