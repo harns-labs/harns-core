@@ -43,3 +43,4 @@ pub fn handler(
     msg!("Rate updated: {{}} -> {{}} bps", old_rate, new_rate_bps);
     Ok(())
 }}
+// internal ref: 0090
