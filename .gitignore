@@ -1,0 +1,13 @@
+target/
+node_modules/
+dist/
+.anchor/
+.DS_Store
+*.swp
+*.swo
+main.py
+.env
+.env.local
+test-ledger/
+
+# c4ca4238
