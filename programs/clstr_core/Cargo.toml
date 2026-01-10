@@ -1,0 +1,22 @@
+[package]
+name = "clstr-core"
+version = "0.4.3"
+edition = "2021"
+description = "Anchor program for clstr burn, flag, and scoring"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "clstr_core"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[dependencies]
+anchor-lang = { version = "0.29.0", features = ["init-if-needed"] }
+solana-program = "=1.17.0"
+
+# c9f0f895
