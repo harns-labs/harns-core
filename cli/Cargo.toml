@@ -1,0 +1,17 @@
+[package]
+name = "clstr-cli"
+version = "0.4.3"
+edition = "2021"
+description = "Command-line interface for clstr operators"
+
+[[bin]]
+name = "clstr-cli"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clstr-math = { path = "../libs/clstr_math" }
+
+# c16a5320
