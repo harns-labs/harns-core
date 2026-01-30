@@ -28,4 +28,4 @@ impl FlagAccount {
     pub const LEN: usize = 32 + 32 + 8 + 32 + 8 + 1 + 6;
 }
 
-// d3d94468
+// a1d0c6e8
