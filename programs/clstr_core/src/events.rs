@@ -23,4 +23,4 @@ pub struct ScoreUpdated {
     pub timestamp: i64,
 }
 
-// aab32389
+// 67c6a1e7
