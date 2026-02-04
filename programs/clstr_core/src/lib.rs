@@ -1,3 +1,4 @@
+/// Core program for the clstr protocol.
 use anchor_lang::prelude::*;
 
 mod state;
@@ -69,4 +70,4 @@ pub mod clstr_core {
     }
 }
 
-// 642e92ef
+// c0c7c76d
