@@ -71,4 +71,4 @@ pub struct UpdateScore<'info> {
     pub flagger: Signer<'info>,
 }
 
-// d82c8d16
+// 72b32a1f
