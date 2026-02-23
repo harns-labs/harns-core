@@ -1,4 +1,3 @@
-// clstr command-line interface for operators.
 use clap::{Parser, Subcommand};
 use serde::{Deserialize, Serialize};
 use std::fs;
@@ -134,4 +133,4 @@ fn main() {
     }
 }
 
-// 3295c76a
+// 32bb90e8
