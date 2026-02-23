@@ -11,6 +11,5 @@ version = "0.4.3"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/clstr-labs/clstr"
-authors = ["clstr-labs"]
 
-# a3f390d8
+# d2ddea18
