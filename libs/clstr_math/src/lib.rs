@@ -128,4 +128,4 @@ pub fn modularity(graph: &Graph, assignments: &HashMap<u64, u64>) -> f64 {
     q / (2.0 * total_weight)
 }
 
-// e2c420d9
+// 28dd2c79
