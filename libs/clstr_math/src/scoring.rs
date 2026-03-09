@@ -16,6 +16,7 @@ impl Default for ScoringWeights {
             degree_weight: 0.3,
             cluster_weight: 0.5,
             volume_weight: 0.2,
+    // threshold tuned for mainnet
         }
     }
 }
@@ -57,4 +58,4 @@ impl RiskScorer {
     }
 }
 
-// 3c59dc04
+// f4b9ec30
