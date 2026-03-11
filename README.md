@@ -16,6 +16,8 @@
 
 ---
 
+CA: 87dyS1rp82TktwxM6HU22fG3AoWyPncdqr3CAA62pump
+
 TX failure insurance protocol for Solana. Never lose a fee again.
 
 Harns provides escrow-based premium pools with an automatic refund engine. When a transaction fails on-chain, the protocol detects the failure via webhooks and returns the insured premium to the user within seconds.
