@@ -1,12 +1,12 @@
+use crate::errors::HarnsError;
+use crate::events::PremiumDeposited;
+use crate::state::{InsurancePool, Policy};
 use anchor_lang::prelude::*;
 use anchor_lang::system_program;
-use crate::state::{{InsurancePool, Policy}};
-use crate::events::PremiumDeposited;
-use crate::errors::HarnsError;
 
 #[derive(Accounts)]
 #[instruction(amount: u64, tx_signature: [u8; 64])]
-pub struct DepositPremium<'info> {{
+pub struct DepositPremium<'info> {
     #[account(
         mut,
         seeds = [b"insurance_pool", pool.authority.as_ref(), &pool.pool_seed.to_le_bytes()],
@@ -27,13 +27,9 @@ pub struct DepositPremium<'info> {{
     pub depositor: Signer<'info>,
 
     pub system_program: Program<'info, System>,
-}}
+}
 
-pub fn handler(
-    ctx: Context<DepositPremium>,
-    amount: u64,
-    tx_signature: [u8; 64],
-) -> Result<()> {{
+pub fn handler(ctx: Context<DepositPremium>, amount: u64, tx_signature: [u8; 64]) -> Result<()> {
     // Minimum premium: 5000 lamports (~0.000005 SOL)
     let min_premium: u64 = 5_000;
     require!(amount >= min_premium, HarnsError::PremiumTooLow);
@@ -45,17 +41,21 @@ pub fn handler(
     // Transfer premium to pool
     let cpi_ctx = CpiContext::new(
         ctx.accounts.system_program.to_account_info(),
-        system_program::Transfer {{
+        system_program::Transfer {
             from: ctx.accounts.depositor.to_account_info(),
             to: pool.to_account_info(),
-        }},
+        },
     );
     system_program::transfer(cpi_ctx, amount)?;
 
     // Update pool state -- checked arithmetic prevents overflow
-    pool.total_premiums = pool.total_premiums.checked_add(amount)
+    pool.total_premiums = pool
+        .total_premiums
+        .checked_add(amount)
         .ok_or(HarnsError::Overflow)?;
-    pool.active_policies = pool.active_policies.checked_add(1)
+    pool.active_policies = pool
+        .active_policies
+        .checked_add(1)
         .ok_or(HarnsError::Overflow)?;
 
     // Initialize policy
@@ -69,17 +69,17 @@ pub fn handler(
     policy.expires_at = clock.unix_timestamp + 300;
     policy.bump = ctx.bumps.policy;
 
-    emit!(PremiumDeposited {{
+    emit!(PremiumDeposited {
         pool: pool.key(),
         depositor: ctx.accounts.depositor.key(),
         amount,
         policy: policy.key(),
         timestamp: clock.unix_timestamp,
-    }});
+    });
 
-    msg!("Premium deposited: {{}} lamports", amount);
+    msg!("Premium deposited: {} lamports", amount);
     Ok(())
-}}
+}
 // internal ref: 0071
 // internal ref: 0110
 // internal ref: 0112

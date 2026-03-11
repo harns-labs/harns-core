@@ -1,9 +1,9 @@
-use anchor_lang::prelude::*;
-use crate::state::{{InsurancePool, Policy}};
 use crate::errors::HarnsError;
+use crate::state::{InsurancePool, Policy};
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
-pub struct ExpirePolicy<'info> {{
+pub struct ExpirePolicy<'info> {
     #[account(
         mut,
         seeds = [b"insurance_pool", pool.authority.as_ref(), &pool.pool_seed.to_le_bytes()],
@@ -20,9 +20,9 @@ pub struct ExpirePolicy<'info> {{
     pub policy: Account<'info, Policy>,
 
     pub authority: Signer<'info>,
-}}
+}
 
-pub fn handler(ctx: Context<ExpirePolicy>) -> Result<()> {{
+pub fn handler(ctx: Context<ExpirePolicy>) -> Result<()> {
     let policy = &mut ctx.accounts.policy;
     let pool = &mut ctx.accounts.pool;
     let clock = Clock::get()?;
@@ -33,14 +33,12 @@ pub fn handler(ctx: Context<ExpirePolicy>) -> Result<()> {{
     );
 
     policy.status = 2; // expired
-    pool.active_policies = pool.active_policies.checked_sub(1)
+    pool.active_policies = pool
+        .active_policies
+        .checked_sub(1)
         .ok_or(HarnsError::Overflow)?;
 
-    msg!(
-        "Policy expired: {{}}, owner: {{}}",
-        policy.key(),
-        policy.owner
-    );
+    msg!("Policy expired: {}, owner: {}", policy.key(), policy.owner);
 
     Ok(())
-}}
+}

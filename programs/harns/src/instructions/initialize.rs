@@ -1,11 +1,11 @@
-use anchor_lang::prelude::*;
-use crate::state::InsurancePool;
-use crate::events::PoolInitialized;
 use crate::errors::HarnsError;
+use crate::events::PoolInitialized;
+use crate::state::InsurancePool;
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 #[instruction(pool_seed: u64)]
-pub struct Initialize<'info> {{
+pub struct Initialize<'info> {
     #[account(
         init,
         payer = authority,
@@ -19,14 +19,13 @@ pub struct Initialize<'info> {{
     pub authority: Signer<'info>,
 
     pub system_program: Program<'info, System>,
-}}
+}
 
-pub fn handler(
-    ctx: Context<Initialize>,
-    pool_seed: u64,
-    base_rate_bps: u16,
-) -> Result<()> {{
-    require!(base_rate_bps > 0 && base_rate_bps <= 10000, HarnsError::InvalidRate);
+pub fn handler(ctx: Context<Initialize>, pool_seed: u64, base_rate_bps: u16) -> Result<()> {
+    require!(
+        base_rate_bps > 0 && base_rate_bps <= 10000,
+        HarnsError::InvalidRate
+    );
 
     let pool = &mut ctx.accounts.pool;
     let clock = Clock::get()?;
@@ -41,16 +40,20 @@ pub fn handler(
     pool.total_refunds = 0;
     pool.active_policies = 0;
 
-    emit!(PoolInitialized {{
+    emit!(PoolInitialized {
         pool: pool.key(),
         authority: ctx.accounts.authority.key(),
         base_rate_bps,
         timestamp: clock.unix_timestamp,
-    }});
+    });
 
-    msg!("Insurance pool initialized: {{}}, rate: {{}} bps", pool.key(), base_rate_bps);
+    msg!(
+        "Insurance pool initialized: {}, rate: {} bps",
+        pool.key(),
+        base_rate_bps
+    );
     Ok(())
-}}
+}
 // internal ref: 0073
 // internal ref: 0074
 // internal ref: 0096

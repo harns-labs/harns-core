@@ -1,10 +1,10 @@
-use anchor_lang::prelude::*;
-use crate::state::InsurancePool;
-use crate::events::PoolClosed;
 use crate::errors::HarnsError;
+use crate::events::PoolClosed;
+use crate::state::InsurancePool;
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
-pub struct ClosePool<'info> {{
+pub struct ClosePool<'info> {
     #[account(
         mut,
         close = authority,
@@ -19,26 +19,26 @@ pub struct ClosePool<'info> {{
     pub authority: Signer<'info>,
 
     pub system_program: Program<'info, System>,
-}}
+}
 
-pub fn handler(ctx: Context<ClosePool>) -> Result<()> {{
+pub fn handler(ctx: Context<ClosePool>) -> Result<()> {
     let pool = &ctx.accounts.pool;
     let clock = Clock::get()?;
 
     let remaining_balance = pool.to_account_info().lamports();
 
-    emit!(PoolClosed {{
+    emit!(PoolClosed {
         pool: pool.key(),
         authority: ctx.accounts.authority.key(),
         remaining_balance,
         timestamp: clock.unix_timestamp,
-    }});
+    });
 
     msg!(
-        "Pool closed: {{}}, remaining balance: {{}} lamports returned to authority",
+        "Pool closed: {}, remaining balance: {} lamports returned to authority",
         pool.key(),
         remaining_balance
     );
 
     Ok(())
-}}
+}

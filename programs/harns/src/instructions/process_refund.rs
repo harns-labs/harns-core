@@ -1,11 +1,11 @@
-use anchor_lang::prelude::*;
-use crate::state::{{InsurancePool, Policy, RefundRecord}};
-use crate::events::RefundProcessed;
 use crate::errors::HarnsError;
+use crate::events::RefundProcessed;
+use crate::state::{InsurancePool, Policy, RefundRecord};
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 #[instruction(tx_signature: [u8; 64])]
-pub struct ProcessRefund<'info> {{
+pub struct ProcessRefund<'info> {
     #[account(
         mut,
         seeds = [b"insurance_pool", pool.authority.as_ref(), &pool.pool_seed.to_le_bytes()],
@@ -42,18 +42,19 @@ pub struct ProcessRefund<'info> {{
     pub authority: Signer<'info>,
 
     pub system_program: Program<'info, System>,
-}}
+}
 
-pub fn handler(
-    ctx: Context<ProcessRefund>,
-    _tx_signature: [u8; 64],
-) -> Result<()> {{
+pub fn handler(ctx: Context<ProcessRefund>, _tx_signature: [u8; 64]) -> Result<()> {
     let pool = &mut ctx.accounts.pool;
     let policy = &mut ctx.accounts.policy;
     let refund_record = &mut ctx.accounts.refund_record;
     let clock = Clock::get()?;
 
-    msg!("Policy expiry check: now={{}} expires={{}}", clock.unix_timestamp, policy.expires_at);
+    msg!(
+        "Policy expiry check: now={} expires={}",
+        clock.unix_timestamp,
+        policy.expires_at
+    );
     require!(
         clock.unix_timestamp <= policy.expires_at,
         HarnsError::PolicyExpired
@@ -69,9 +70,13 @@ pub fn handler(
     **claimant_info.try_borrow_mut_lamports()? += refund_amount;
 
     // Update pool state
-    pool.total_refunds = pool.total_refunds.checked_add(refund_amount)
+    pool.total_refunds = pool
+        .total_refunds
+        .checked_add(refund_amount)
         .ok_or(HarnsError::Overflow)?;
-    pool.active_policies = pool.active_policies.checked_sub(1)
+    pool.active_policies = pool
+        .active_policies
+        .checked_sub(1)
         .ok_or(HarnsError::Overflow)?;
 
     // Update policy
@@ -84,17 +89,22 @@ pub fn handler(
     refund_record.refunded_at = clock.unix_timestamp;
     refund_record.bump = ctx.bumps.refund_record;
 
-    emit!(RefundProcessed {{
+    emit!(RefundProcessed {
         pool: pool.key(),
         policy: policy.key(),
         recipient: ctx.accounts.claimant.key(),
         amount: refund_amount,
         timestamp: clock.unix_timestamp,
-    }});
+    });
 
-    msg!("Refund processed: {{}} lamports to {{}} (policy: {{}})", refund_amount, ctx.accounts.claimant.key(), policy.key());
+    msg!(
+        "Refund processed: {} lamports to {} (policy: {})",
+        refund_amount,
+        ctx.accounts.claimant.key(),
+        policy.key()
+    );
     Ok(())
-}}
+}
 // internal ref: 0077
 // internal ref: 0105
 // internal ref: 0107

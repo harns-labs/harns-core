@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 #[account]
 #[derive(Default)]
-pub struct InsurancePool {{
+pub struct InsurancePool {
     /// Authority that controls the pool
     pub authority: Pubkey,
     /// Pool seed for PDA derivation
@@ -25,16 +25,16 @@ pub struct InsurancePool {{
     pub bump: u8,
     /// Reserved for future use
     pub _padding: [u8; 63],
-}}
+}
 
-impl InsurancePool {{
+impl InsurancePool {
     /// 8 (discriminator) + 32 + 8 + 8 + 8 + 4 + 2 + 8 + 8 + 1 + 1 + 63 = 151
     pub const SPACE: usize = 8 + 32 + 8 + 8 + 8 + 4 + 2 + 8 + 8 + 1 + 64;
-}}
+}
 
 #[account]
 #[derive(Default)]
-pub struct Policy {{
+pub struct Policy {
     /// Owner of the policy
     pub owner: Pubkey,
     /// Associated insurance pool
@@ -51,15 +51,15 @@ pub struct Policy {{
     pub expires_at: i64,
     /// Bump seed for PDA
     pub bump: u8,
-}}
+}
 
-impl Policy {{
+impl Policy {
     /// 8 (discriminator) + 32 + 32 + 8 + 64 + 1 + 8 + 8 + 1 = 162
     pub const SPACE: usize = 8 + 32 + 32 + 8 + 64 + 1 + 8 + 8 + 1;
-}}
+}
 
 #[account]
-pub struct RefundRecord {{
+pub struct RefundRecord {
     /// Policy that was refunded
     pub policy: Pubkey,
     /// Recipient of the refund
@@ -70,12 +70,12 @@ pub struct RefundRecord {{
     pub refunded_at: i64,
     /// Bump seed for PDA
     pub bump: u8,
-}}
+}
 
-impl RefundRecord {{
+impl RefundRecord {
     /// 8 (discriminator) + 32 + 32 + 8 + 8 + 1 = 89
     pub const SPACE: usize = 8 + 32 + 32 + 8 + 8 + 1;
-}}
+}
 // internal ref: 0075
 // internal ref: 0079
 // internal ref: 0086

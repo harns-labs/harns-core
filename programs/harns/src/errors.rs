@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 
 #[error_code]
-pub enum HarnsError {{
+pub enum HarnsError {
     #[msg("Insurance rate must be between 1 and 10000 basis points")]
     InvalidRate,
 
@@ -31,7 +31,7 @@ pub enum HarnsError {{
 
     #[msg("Pool is currently paused")]
     PoolPaused,
-}}
+}
 // internal ref: 0084
 // internal ref: 0085
 // internal ref: 0092
