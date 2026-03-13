@@ -47,4 +47,4 @@ pub fn batch_verify(commitments: &[ZkCommitment], data_slices: &[&[u8]]) -> Vec<
         .collect()
 }
 
-// 98dce83d
+// 7f6ffaa6
