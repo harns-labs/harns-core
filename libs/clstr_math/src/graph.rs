@@ -1,4 +1,3 @@
-// Graph traversal utilities for wallet clustering.
 use std::collections::{HashMap, HashSet, VecDeque};
 
 pub fn bfs_distances(adjacency: &HashMap<u64, Vec<(u64, f64)>>, start: u64) -> HashMap<u64, u32> {
@@ -64,4 +63,4 @@ pub fn degree_centrality(adjacency: &HashMap<u64, Vec<(u64, f64)>>) -> HashMap<u
         .collect()
 }
 
-// 8613985e
+// 5f93f983
