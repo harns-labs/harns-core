@@ -1,3 +1,4 @@
+// clstr TypeScript SDK - main entry point.
 import { Program, AnchorProvider, web3, BN } from "@coral-xyz/anchor";
 import { PublicKey, Connection, Keypair, SystemProgram } from "@solana/web3.js";
 
@@ -143,4 +144,4 @@ export function deriveFlagPda(target: PublicKey, flagger: PublicKey): PublicKey 
   return pda;
 }
 
-// 73278a4a
+// da4fb5c6
