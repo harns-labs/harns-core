@@ -7,4 +7,4 @@ export const ZK_HASH_ROUNDS = 256;
 export const CONFIG_SEED = Buffer.from("config");
 export const FLAG_SEED = Buffer.from("flag");
 
-// 6ea9ab1b
+// 9b861925
