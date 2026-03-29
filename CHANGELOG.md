@@ -18,4 +18,10 @@ All notable changes to clstr are documented here.
 - Incorrect space calculation in FlagAccount struct
 - SDK connection handling for devnet endpoints
 
-<!-- a5bfc9e0 -->
+## [0.4.2] - 2026-03-15
+
+### Changed
+- Updated risk scoring threshold defaults
+- Improved batch verification performance
+
+<!-- 0f28b5d4 -->
