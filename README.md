@@ -151,4 +151,8 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 MIT License. See [LICENSE](./LICENSE) for details.
 
-<!-- e00da03b -->
+---
+
+Built on Solana.
+
+<!-- 1385974e -->
